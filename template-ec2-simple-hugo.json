@@ -1,0 +1,77 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "7ce6660c-2002-4605-b910-f3f7656a3bb1": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 320,
+                    "y": 110
+                },
+                "z": 0
+            },
+            "47b44646-8efd-4800-b04b-f8e65ad7e005": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 140,
+                    "y": 58
+                },
+                "z": 0,
+                "dependson": [
+                    "7ce6660c-2002-4605-b910-f3f7656a3bb1"
+                ]
+            },
+            "3cd9851e-4220-4158-8273-365ab65289f7": {
+                "source": {
+                    "id": "47b44646-8efd-4800-b04b-f8e65ad7e005"
+                },
+                "target": {
+                    "id": "7ce6660c-2002-4605-b910-f3f7656a3bb1"
+                },
+                "z": 1
+            }
+        }
+    },
+    "Resources": {
+        "EC2I2CCOS": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-64260718",
+                "InstanceType": "t2.micro",
+                "KeyName": "keyhugo1"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "7ce6660c-2002-4605-b910-f3f7656a3bb1"
+                }
+            }
+        },
+        "EC2SG4H2IR": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupName": "SG-CF-Hugo1",
+                "GroupDescription": "SG-CF-Hugo1",
+                "SecurityGroupIngress": [{
+                    "IpProtocol": "tcp",
+                    "FromPort": "22",
+                    "ToPort": "22",
+                    "CidrIp":  "0.0.0.0/0" 
+                }]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "47b44646-8efd-4800-b04b-f8e65ad7e005"
+                }
+            },
+            "DependsOn": [
+                "EC2I2CCOS"
+            ]
+        }
+    }
+}
